@@ -19,3 +19,26 @@ def quiz():
 @app.route("/make")
 def create_playlist():
     return render_template("make.html")
+
+
+# Channels {Thread: {message data}}
+channels = {"id": {"General": {"message": ["date and time pushed"]}}}
+
+
+@app.route("/chat", methods=["GET", "POST"])
+def chat_room():
+
+    if request.method == "GET":
+        # Grab initial page with channels
+        return render_template("chat.html", posts=channels)
+    else:
+        return render_template("chat.html", )
+
+
+@app.route("/form/<grabbed_id>", methods=["GET"])
+def thread(grabbed_id):
+    if grabbed_id not in channels:
+        return render_template("error.html")
+
+# Database stuff
+# https://www.youtube.com/watch?v=cYWiDiIUxQc
