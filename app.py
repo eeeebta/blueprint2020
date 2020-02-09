@@ -10,3 +10,7 @@ def hello_world():
 @app.route("test")
 def test():
     return render_template("index.html")
+
+
+def chad():
+    return "hello"
