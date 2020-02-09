@@ -22,17 +22,25 @@ def create_playlist():
 
 
 # Channels {Thread: {message data}}
-channels = {"id": {"General": {"message": ["date and time pushed"]}}}
+channels = {0: {"General": ["message"]}}
 
 
 @app.route("/chat", methods=["GET", "POST"])
 def chat_room():
     if request.method == "GET":
         # Grab initial page with channels
+        channel_data = []
         for item in channels:
             print(item)
+            for channel in channels[item]:
+                channel_data.append(channel)
+
+        for a in range(30):
+            print(channel_data)
+
         return render_template("chat.html", posts=channels)
     else:
+        channels[request.get("given_id")][request.get("channel_name")].append(request.get("message"))
         return render_template("chat.html", )
 
 
