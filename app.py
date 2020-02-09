@@ -1,16 +1,9 @@
-from flask import Flask, render_template
+from flask import Flask, flash, jsonify, redirect, render_template, request, session, url_for, jsonify
+import spotipy
 app = Flask(__name__)
 
 
-@app.route('/')
+@app.route("/")
 def hello_world():
-    return 'Hello, World!'
-
-
-@app.route("test")
-def test():
     return render_template("index.html")
 
-
-def chad():
-    return "hello"
